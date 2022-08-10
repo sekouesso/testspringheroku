@@ -22,5 +22,22 @@ public class PersonService {
 		return this.repo.save(person);
 	}
 	
+	public Person findOne(Long id) {
+		return this.repo.findById(id).get();
+	}
+	
+	public Person update(Person person,Long id) {
+	Person p = findOne(id);
+	person.setId(p.getId());
+	this.repo.save(person);
+	return person;
+	}
+	
+	public String delete(Long id) {
+		Person p = findOne(id);
+		this.repo.deleteById(id);
+		return "Spression réussi";
+	}
+	
 
 }
